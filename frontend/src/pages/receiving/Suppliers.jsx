@@ -1,0 +1,64 @@
+import {
+  Container,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react';
+import SupplierForm from '../receiving/supplier_items/SupplierForm';
+import SuppliersTable from '../receiving/supplier_items/SuppliersTable';
+import { useState } from 'react';
+
+const Suppliers = () => {
+
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const handleTabsChange = (index) => {
+    setTabIndex(index);
+  };
+
+  return (
+    <Container
+      variant="outline"
+      maxWidth="5xl"
+      py="2rem"
+      m="1.5rem"
+      bg="white"
+      borderRadius="5px"
+      fontFamily="Inter, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif"
+      // fontSize="14px"
+      fontWeight="normal"
+    >
+      {/* <CardBody> */}
+      <Tabs
+        index={tabIndex}
+        onChange={handleTabsChange}
+        mt="0px"
+        p="0px"
+        colorScheme="green"
+        variant="enclosed"
+      >
+        <TabList>
+          <Tab _selected={{ color: 'white', bg: 'green.500' }}>Suppliers</Tab>
+          <Tab _selected={{ color: 'white', bg: 'green.500' }}>
+            Add New Supplier
+          </Tab>          
+        </TabList>
+
+        <TabPanels>
+          <TabPanel>
+            <SuppliersTable/>
+          </TabPanel>
+
+          <TabPanel>
+            <SupplierForm />
+          </TabPanel>
+          
+        </TabPanels>
+      </Tabs>
+      {/* </CardBody> */}
+    </Container>
+  );
+};
+export default Suppliers;
